@@ -25,28 +25,26 @@ export default function App() {
   const [nombre, setNombre] = useState('');
   const [edad, setEdad] = useState('');
   const [pais, setPais] = useState('');
-  const [editando, setEditando] = useState(null); // id del alumno editando
+  const [editando, setEditando] = useState(null); 
   const [nombreEdit, setNombreEdit] = useState('');
   const [edadEdit, setEdadEdit] = useState('');
   const [paisEdit, setPaisEdit] = useState('');
 
-  // Agregar alumno
   const agregarAlumno = () => {
     if (!nombre || !edad || !pais) {
       alert('Error. Completa todos los campos');
       return;
     }
-    // Validar nombre solo letras (y espacios)
+    // regex para letras
     if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/.test(nombre.trim())) {
       alert('Error. El nombre solo debe contener letras');
       return;
     }
-    // Validar edad entero
+    // regex num entero
     if (!/^\d+$/.test(edad.trim())) {
       alert('Error. La edad debe ser un número entero');
       return;
     }
-    // Validar país
     const paisValido = PAISES.some(
       p => p.toLowerCase() === pais.trim().toLowerCase()
     );
@@ -68,12 +66,10 @@ export default function App() {
     setPais('');
   };
 
-  // Eliminar alumno
   const eliminarAlumno = (id) => {
     setAlumnos(alumnos.filter(a => a.id !== id));
   };
 
-  // Editar alumno
   const iniciarEdicion = (alumno) => {
     setEditando(alumno.id);
     setNombreEdit(alumno.nombre);
@@ -86,17 +82,16 @@ export default function App() {
       alert('Error. Completa todos los campos');
       return;
     }
-    // Validar nombre solo letras (y espacios)
+    // regex letras
     if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/.test(nombreEdit.trim())) {
       alert('Error. El nombre solo debe contener letras');
       return;
     }
-    // Validar edad entero
+    // regex num entero
     if (!/^\d+$/.test(edadEdit.trim())) {
       alert('Error. La edad debe ser un número entero');
       return;
     }
-    // Validar país
     const paisValido = PAISES.some(
       p => p.toLowerCase() === paisEdit.trim().toLowerCase()
     );
@@ -215,6 +210,15 @@ export default function App() {
     </View>
   );
 }
+
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
